@@ -12,5 +12,6 @@ namespace CarSharingAPI.Data
         
         public DbSet<User> Users { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Car> Cars { get; set; }
     }
 }

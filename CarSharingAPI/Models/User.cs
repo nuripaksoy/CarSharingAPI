@@ -1,4 +1,6 @@
-﻿namespace CarSharingAPI.Models
+﻿using System.Text.Json.Serialization;
+
+namespace CarSharingAPI.Models
 {
     public class User
     {
@@ -9,5 +11,6 @@
         public string PhoneNumber { get; set; } = string.Empty;
         public int Rank { get; set; }
         public List<Ticket> Tickets { get; set; }
+        public List<Car> Cars { get; set; }
     }
 }
