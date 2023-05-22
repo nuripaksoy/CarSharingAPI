@@ -66,6 +66,34 @@ namespace CarSharingAPI.Controllers
             return NotFound();
         }
 
+        [HttpPut]
+        [Route("SetPassenger/{passengerId}/{ticketId}")]
+        public async Task<IActionResult> SetPassengerTicket(int passengerId, int ticketId)
+        {
+            var ticket = await _context.Tickets.FindAsync(ticketId);
+            if (ticket != null)
+            {
+                ticket.PassengerId = passengerId;
+                await _context.SaveChangesAsync();
+                return Ok(ticket);
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [Route("GetTicketByPassenger/{passengerId}")]
+        public async Task<IActionResult> GetTicketByPassenger([FromRoute] int passengerId)
+        {
+            var ticket = await _context.Tickets
+                .Where(t => t.PassengerId == passengerId)
+                .ToListAsync();
+            if(ticket != null)
+            {
+                return Ok(ticket);
+            }
+            return NotFound();
+        }
+
         [HttpGet]
         [Route("{id:int}")]
         public async Task<IActionResult> GetTicket([FromRoute] int id)
